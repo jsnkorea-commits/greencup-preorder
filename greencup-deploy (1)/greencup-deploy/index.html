@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>그린컵 민트 텀블러 사전예약</title>
+<meta name="description" content="색상 때문에 망설였다면, 조용한 민트. 그린컵 민트 스테인리스 텀블러 350ml 사전예약">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+/* 레이아웃: 상세페이지처럼 가운데 한 줄로 길게 내려가는 구성. 섹션마다 흰색/눈빛 민트 배경을 번갈아 써서 구분하고, 사전예약 폼만 짙은 솔잎색 위에 눈이 내린다. */
+:root {
+  --paper: #ffffff;
+  --snow: #f3f9f7;
+  --mint: #9cc5b6;
+  --mint-soft: #e3f0eb;
+  --mint-line: #d3e5de;
+  --pine: #2f5a4c;
+  --pine-deep: #234539;
+  --ink: #1e2b27;
+  --muted: #5d706a;
+  --berry: #a9535a;
+  --display: "Gowun Batang", "Nanum Myeongjo", "AppleMyungjo", serif;
+  --body: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --wrap: 1040px;
+  --gap-section: clamp(88px, 12vw, 152px);
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.75;
+  word-break: keep-all;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+[hidden] { display: none !important; }
+h1, h2, h3 { font-family: var(--display); font-weight: 700; line-height: 1.35; text-wrap: balance; margin: 0; color: var(--pine-deep); }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--pine); outline-offset: 3px; }
+
+.wrap {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+section { padding-block: var(--gap-section); }
+.band-snow { background: var(--snow); }
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 12px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--pine);
+}
+.eyebrow::before { content: ""; width: 24px; height: 1px; background: currentColor; }
+.section-head { display: grid; gap: 18px; max-width: 640px; margin: 0 auto 72px; text-align: center; justify-items: center; }
+.section-head h2 { font-size: clamp(26px, 3.6vw, 36px); }
+.section-head p { color: var(--muted); }
+
+/* 눈송이 구분선 */
+.flake { display: flex; align-items: center; justify-content: center; gap: 14px; color: var(--mint); }
+.flake::before, .flake::after { content: ""; width: 56px; height: 1px; background: var(--mint-line); }
+.flake svg { width: 14px; height: 14px; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 54px; padding: 0 34px;
+  border: 0; border-radius: 999px;
+  background: var(--pine); color: #fff;
+  font: 500 16px/1 var(--body); letter-spacing: .02em; text-decoration: none;
+  cursor: pointer; transition: background .25s, transform .25s;
+}
+.btn:hover { background: var(--pine-deep); transform: translateY(-1px); }
+
+/* 상단 알림 띠 */
+.notice {
+  background: var(--pine-deep); color: #e8f3ef;
+  font-size: 13px; letter-spacing: .04em; text-align: center;
+  padding: 10px max(16px, env(safe-area-inset-right, 0px)) 10px max(16px, env(safe-area-inset-left, 0px));
+}
+.notice b { font-weight: 500; color: #fff; }
+.notice .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--berry); margin-right: 8px; vertical-align: 2px; }
+
+/* 1. 상단 배너 */
+.hero { position: relative; padding: 0; background: var(--snow); overflow: hidden; }
+.hero-img { width: 100%; aspect-ratio: 1672 / 941; object-fit: cover; }
+.hero-copy {
+  position: absolute; top: 50%; right: 7%; transform: translateY(-50%);
+  width: min(44%, 460px);
+  display: grid; gap: 22px; justify-items: start;
+}
+.hero-copy h1 { font-size: clamp(30px, 3.9vw, 50px); letter-spacing: -.01em; }
+.hero-copy .sub { color: var(--muted); font-size: clamp(15px, 1.3vw, 17px); }
+.hero-copy .spec { font-size: 13px; letter-spacing: .14em; color: var(--pine); }
+.snowfall { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+/* 2. 제품 소개 */
+.features { display: grid; gap: clamp(80px, 10vw, 128px); }
+.feature { display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(32px, 6vw, 72px); align-items: center; }
+.feature:nth-child(even) .feature-img { order: 2; }
+.feature-img { border-radius: 4px; overflow: hidden; background: var(--mint-soft); }
+.feature-img img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; transition: transform 1.2s ease; }
+.feature:hover .feature-img img { transform: scale(1.03); }
+.feature-text { display: grid; gap: 16px; min-width: 0; }
+.feature-text .label { font-size: 12px; letter-spacing: .22em; color: var(--mint); font-weight: 700; text-transform: uppercase; }
+.feature-text h3 { font-size: clamp(22px, 2.6vw, 28px); }
+.feature-text p { color: var(--muted); }
+.spec-list { list-style: none; margin: 8px 0 0; padding: 0; border-top: 1px solid var(--mint-line); }
+.spec-list li { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--mint-line); font-size: 15px; }
+.spec-list span:first-child { color: var(--muted); }
+.spec-list span:last-child { color: var(--ink); font-weight: 500; }
+
+/* 3. 데이터로 보는 이유 */
+.why-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: clamp(40px, 6vw, 80px); align-items: start; }
+.why-lead { display: grid; gap: 20px; }
+.why-lead .big { font-family: var(--display); font-size: clamp(64px, 9vw, 104px); line-height: 1; color: var(--pine); font-variant-numeric: tabular-nums; }
+.why-lead .big small { font-size: .38em; margin-left: 4px; }
+.why-lead h3 { font-size: clamp(20px, 2.2vw, 24px); }
+.why-lead p { color: var(--muted); }
+.chart-card { background: var(--paper); border: 1px solid var(--mint-line); border-radius: 6px; padding: clamp(24px, 4vw, 40px); min-width: 0; }
+.chart-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+.chart-top h4 { margin: 0; font-size: 15px; font-weight: 500; color: var(--ink); }
+.chart-top .unit { font-size: 12px; color: var(--muted); }
+.chart { display: grid; gap: 18px; position: relative; }
+.row { display: grid; grid-template-columns: 84px 1fr 92px; align-items: center; gap: 14px; }
+.row .name { font-size: 14px; color: var(--ink); }
+.track { position: relative; height: 30px; border-radius: 2px; background: repeating-linear-gradient(90deg, var(--mint-line) 0 1px, transparent 1px 25%); background-color: var(--snow); outline: none; cursor: default; }
+.bar {
+  position: absolute; inset: 0 auto 0 0;
+  width: var(--w); border-radius: 2px;
+  background: #c9ddd6;
+  transition: background .25s;
+}
+.row.hi .bar { background: var(--pine); }
+.row.hi .name { font-weight: 700; color: var(--pine-deep); }
+.track:hover .bar, .track:focus-visible .bar { background: var(--mint); }
+.row.hi .track:hover .bar, .row.hi .track:focus-visible .bar { background: var(--pine-deep); }
+.js .chart .bar { width: 0; }
+.val { font-size: 14px; text-align: right; font-variant-numeric: tabular-nums; color: var(--muted); white-space: nowrap; }
+.row.hi .val { color: var(--pine-deep); font-weight: 700; }
+.tip {
+  position: absolute; z-index: 2; pointer-events: none;
+  background: var(--pine-deep); color: #fff; font-size: 13px; line-height: 1.6;
+  padding: 10px 14px; border-radius: 4px; white-space: nowrap;
+  opacity: 0; transform: translateY(4px); transition: opacity .18s, transform .18s;
+}
+.tip.on { opacity: 1; transform: translateY(0); }
+.tip b { font-weight: 700; }
+.axis { display: grid; grid-template-columns: 84px 1fr 92px; gap: 14px; margin-top: 10px; font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.axis-ticks { display: flex; justify-content: space-between; }
+.chart-foot { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--mint-line); font-size: 12px; color: var(--muted); }
+.replay { background: none; border: 1px solid var(--mint-line); border-radius: 999px; padding: 6px 14px; font: 500 12px var(--body); color: var(--pine); cursor: pointer; }
+.replay:hover { border-color: var(--pine); }
+
+/* 4. 고객 후기 */
+.reviews { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.review {
+  display: grid; gap: 18px; align-content: start;
+  background: var(--paper); border: 1px solid var(--mint-line); border-radius: 6px;
+  padding: clamp(26px, 3.4vw, 36px); min-width: 0;
+}
+.review-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.stars { display: inline-flex; gap: 3px; color: var(--pine); font-size: 17px; letter-spacing: 0; line-height: 1; }
+.stars .off { color: var(--mint-line); }
+.score { font-size: 12px; color: var(--muted); margin-left: 8px; font-variant-numeric: tabular-nums; }
+.channel { font-size: 12px; color: var(--pine); background: var(--mint-soft); border-radius: 999px; padding: 4px 12px; white-space: nowrap; }
+.review blockquote { margin: 0; font-family: var(--display); font-size: clamp(18px, 1.9vw, 20px); line-height: 1.65; color: var(--ink); }
+.review .topic { font-size: 13px; color: var(--muted); }
+.review.low { background: var(--snow); }
+.review.low .stars { color: var(--muted); }
+.reviews-note { margin-top: 28px; text-align: center; font-size: 13px; color: var(--muted); }
+
+/* 5. 사전예약 폼 */
+.reserve { position: relative; background: var(--pine); color: #e8f3ef; overflow: hidden; }
+.reserve .wrap { position: relative; z-index: 1; }
+.reserve .section-head h2 { color: #fff; }
+.reserve .section-head p { color: #cfe3dc; }
+.reserve .eyebrow { color: var(--mint); }
+.form {
+  max-width: 520px; margin: 0 auto; display: grid; gap: 22px;
+  background: var(--paper); color: var(--ink);
+  border-radius: 8px; padding: clamp(28px, 5vw, 44px);
+}
+.field { display: grid; gap: 8px; }
+.field label { font-size: 14px; font-weight: 500; }
+.field input {
+  width: 100%; min-height: 52px; padding: 0 16px;
+  border: 1px solid var(--mint-line); border-radius: 4px; background: var(--snow);
+  font: 16px var(--body); color: var(--ink);
+}
+.field input:focus { outline: none; border-color: var(--pine); background: var(--paper); box-shadow: 0 0 0 3px var(--mint-soft); }
+.field .err { font-size: 13px; color: var(--berry); min-height: 0; }
+.form .btn { width: 100%; margin-top: 6px; }
+.form-note { font-size: 12px; color: var(--muted); text-align: center; }
+.done { display: grid; gap: 10px; text-align: center; padding: 12px 0; }
+.done strong { font-family: var(--display); font-size: 22px; color: var(--pine-deep); }
+.done p { font-size: 14px; color: var(--muted); }
+
+/* 6. 하단 */
+footer { padding-block: 72px 56px; background: var(--paper); border-top: 1px solid var(--mint-line); }
+.foot { display: grid; justify-items: center; gap: 16px; text-align: center; }
+.foot img { width: 168px; height: auto; }
+.foot p { font-size: 14px; color: var(--muted); }
+.foot small { font-size: 12px; color: #8a9c96; }
+
+/* 등장 효과 */
+.reveal { transition: opacity .9s ease, transform .9s ease; }
+.js .reveal.wait { opacity: 0; transform: translateY(18px); }
+
+@media (max-width: 760px) {
+  .hero-copy { position: static; transform: none; width: auto; padding: 36px max(20px, env(safe-area-inset-right, 0px)) 48px max(20px, env(safe-area-inset-left, 0px)); }
+  .feature { grid-template-columns: 1fr; }
+  .feature:nth-child(even) .feature-img { order: 0; }
+  .why-grid { grid-template-columns: 1fr; }
+  .reviews { grid-template-columns: 1fr; }
+  .row, .axis { grid-template-columns: 70px 1fr 76px; gap: 10px; }
+  .row .name, .val { font-size: 13px; }
+  .section-head { margin-bottom: 48px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal, .feature-img img { transition: none !important; }
+  .snowfall { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="notice"><span class="dot" aria-hidden="true"></span><b>겨울 사전예약</b> 진행 중 · 신청하신 분께 출시 소식을 가장 먼저 보내드려요</div>
+
+<!-- 1. 상단 배너 -->
+<header class="hero">
+  <img class="hero-img" src="images/main-banner.png" alt="창가 원목 테이블 위에 놓인 민트색 그린컵 텀블러와 작은 화분">
+  <canvas class="snowfall" id="heroSnow" aria-hidden="true"></canvas>
+  <div class="hero-copy">
+    <span class="eyebrow">Winter Edition</span>
+    <h1>색상 때문에 망설였다면,<br>조용한 민트</h1>
+    <p class="sub">책상 위에서도, 출근길에도 튀지 않는 색. 그린컵이 색부터 다시 골랐습니다.</p>
+    <p class="spec">MINT · STAINLESS · 350ML</p>
+    <a class="btn" href="#reserve">사전예약 신청하기</a>
+  </div>
+</header>
+
+<!-- 2. 제품 소개 -->
+<section id="product">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Product</span>
+      <h2>매일 들고 다니는 컵이라서</h2>
+      <p>그린컵 민트 스테인리스 텀블러 350ml를 네 가지로 소개합니다.</p>
+    </div>
+
+    <div class="features">
+      <article class="feature reveal">
+        <div class="feature-img"><img src="images/keep-warm.png" alt="김이 오르는 민트 텀블러와 니트 머플러" loading="lazy"></div>
+        <div class="feature-text">
+          <span class="label">Keep Warm</span>
+          <h3>아침에 담은 커피가<br>오후까지 따뜻하게</h3>
+          <p>스테인리스 보온 구조라 출근길에 담은 커피를 점심 지나서까지 따뜻하게 마실 수 있어요. 고객 후기에서 가장 많이 칭찬받은 점도 보온력이었습니다.</p>
+        </div>
+      </article>
+
+      <article class="feature reveal">
+        <div class="feature-img"><img src="images/easy-clean.png" alt="솔로 세척 중인 민트 텀블러와 분리된 뚜껑" loading="lazy"></div>
+        <div class="feature-text">
+          <span class="label">Easy Clean</span>
+          <h3>솔이 바닥까지 닿는<br>넓은 입구</h3>
+          <p>입구가 넓어 세척 솔이 바닥까지 쉽게 들어가고, 뚜껑은 따로 분리해 씻을 수 있어요. 매일 쓰는 컵일수록 씻기 편해야 오래 씁니다.</p>
+        </div>
+      </article>
+
+      <article class="feature reveal">
+        <div class="feature-img"><img src="images/eco-material.png" alt="에코백과 화분 옆에 놓인 민트 텀블러" loading="lazy"></div>
+        <div class="feature-text">
+          <span class="label">Less Waste</span>
+          <h3>오래 쓸 수 있는 색,<br>덜 버리는 텀블러</h3>
+          <p>일회용 컵 대신 텀블러 하나. 금방 질리는 색은 서랍 속으로 들어가지만, 조용한 민트는 몇 해가 지나도 손이 갑니다. 오래 쓰는 것이 가장 쉬운 친환경이에요.</p>
+        </div>
+      </article>
+
+      <article class="feature reveal">
+        <div class="feature-img"><img src="images/how-to-buy.png" alt="종이 상자와 패브릭 끈 옆에 놓인 민트 텀블러" loading="lazy"></div>
+        <div class="feature-text">
+          <span class="label">How to Get</span>
+          <h3>사전예약하고<br>가장 먼저 받아보세요</h3>
+          <p>이름과 이메일만 남겨 주시면 출시 일정과 구매 방법을 가장 먼저 안내해 드려요. 연말 선물로도 잘 어울립니다.</p>
+          <ul class="spec-list">
+            <li><span>제품명</span><span>그린컵 민트 스테인리스 텀블러</span></li>
+            <li><span>용량</span><span>350ml</span></li>
+            <li><span>색상</span><span>민트</span></li>
+            <li><span>신청 방법</span><span>이름·이메일 입력</span></li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="flake" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7M12 5l-2-2M12 5l2-2M12 19l-2 2M12 19l2 2"/></svg></div>
+
+<!-- 3. 데이터로 보는 이유 -->
+<section id="why">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Why Mint</span>
+      <h2>데이터로 보는 이유</h2>
+      <p>지난 1년 동안 들어온 환불 사유를 하나씩 세어 봤습니다.</p>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-lead reveal">
+        <div class="big"><span id="bigNum">30.8</span><small>%</small></div>
+        <h3>환불 3건 중 1건은<br>색상 때문이었어요</h3>
+        <p>전체 환불 26건 가운데 색상 불만이 8건으로 가장 많았습니다. 특정 상품 하나가 아니라 여러 상품에서 고르게 나왔어요. 그래서 이번에는 디자인보다 색부터 다시 골랐습니다.</p>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-top">
+          <h4>환불 사유별 건수</h4>
+          <span class="unit">단위: 건 · 막대에 마우스를 올리면 자세히 보여요</span>
+        </div>
+        <div class="chart" id="chart" role="list" aria-label="환불 사유별 건수 막대그래프"></div>
+        <div class="axis" aria-hidden="true"><span></span><div class="axis-ticks"><span>0</span><span>2</span><span>4</span><span>6</span><span>8</span></div><span></span></div>
+        <div class="chart-foot">
+          <span>자사몰 주문 기준 · 2023.07~2024.06 · 환불 26건</span>
+          <button class="replay" id="replay" type="button">↻ 다시 보기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. 고객 후기 -->
+<section id="reviews" class="band-snow">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Reviews</span>
+      <h2>먼저 써 본 분들의 이야기</h2>
+      <p>그린컵 텀블러 후기를 채널별로 골라, 고치지 않고 그대로 옮겼습니다.</p>
+    </div>
+
+    <div class="reviews">
+      <figure class="review reveal" style="margin:0">
+        <div class="review-top">
+          <div><span class="stars" aria-label="5점 만점에 5점">★★★★★</span><span class="score">5.0 / 5</span></div>
+          <span class="channel">자사몰</span>
+        </div>
+        <blockquote>“아침에 넣은 커피가 오후까지 따뜻해요.”</blockquote>
+        <figcaption class="topic">보온력</figcaption>
+      </figure>
+
+      <figure class="review reveal" style="margin:0">
+        <div class="review-top">
+          <div><span class="stars" aria-label="5점 만점에 5점">★★★★★</span><span class="score">5.0 / 5</span></div>
+          <span class="channel">네이버쇼핑</span>
+        </div>
+        <blockquote>“색감이 진짜 예뻐요. 사진보다 실물이 낫습니다.”</blockquote>
+        <figcaption class="topic">색감</figcaption>
+      </figure>
+
+      <figure class="review reveal" style="margin:0">
+        <div class="review-top">
+          <div><span class="stars" aria-label="5점 만점에 5점">★★★★★</span><span class="score">5.0 / 5</span></div>
+          <span class="channel">인스타그램</span>
+        </div>
+        <blockquote>“디자인 하나는 최고. 들고 다니면 어디서 샀냐고 물어봐요.”</blockquote>
+        <figcaption class="topic">디자인</figcaption>
+      </figure>
+
+      <figure class="review low reveal" style="margin:0">
+        <div class="review-top">
+          <div><span class="stars" aria-label="5점 만점에 2점">★★<span class="off">★★★</span></span><span class="score">2.0 / 5</span></div>
+          <span class="channel">커뮤니티</span>
+        </div>
+        <blockquote>“뚜껑 실리콘에서 냄새가 나요. 몇 번 삶았는데도 남아요.”</blockquote>
+        <figcaption class="topic">뚜껑 냄새 · 아쉬운 점</figcaption>
+      </figure>
+    </div>
+    <p class="reviews-note">좋은 이야기만 모으지 않았어요. 아쉬운 점도 함께 듣고 고쳐 나가겠습니다.</p>
+  </div>
+</section>
+
+<!-- 5. 사전예약 폼 -->
+<section id="reserve" class="reserve">
+  <canvas class="snowfall" id="formSnow" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Pre-order</span>
+      <h2>올겨울, 조용한 민트를<br>가장 먼저 만나 보세요</h2>
+      <p>이름과 이메일만 남겨 주시면 출시 소식을 보내드려요.</p>
+    </div>
+
+    <form class="form reveal" id="reserveForm" novalidate>
+      <div id="formFields" style="display:grid;gap:22px">
+        <div class="field">
+          <label for="name">이름</label>
+          <input id="name" name="name" type="text" autocomplete="name" placeholder="이름을 입력해 주세요" required>
+          <span class="err" id="nameErr" role="alert"></span>
+        </div>
+        <div class="field">
+          <label for="email">이메일</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="example@email.com" required>
+          <span class="err" id="emailErr" role="alert"></span>
+        </div>
+        <button class="btn" type="submit">사전예약 신청하기</button>
+        <p class="form-note">실습용 페이지라 입력한 내용은 어디에도 저장되지 않아요.</p>
+      </div>
+      <div class="done" id="done" hidden>
+        <strong id="doneTitle">사전예약 신청이 완료됐어요</strong>
+        <p>출시 소식은 남겨 주신 이메일로 보내드릴게요.<br>(실습용 페이지라 실제로 저장되지는 않습니다.)</p>
+        <button class="replay" id="again" type="button" style="justify-self:center">다시 입력하기</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- 6. 하단 -->
+<footer>
+  <div class="wrap foot">
+    <img src="images/logo.webp" alt="GREEN CUP" width="168" height="70">
+    <p>매일 쓰는 컵 하나로, 덜 버리는 하루</p>
+    <small>© 2026 GREEN CUP</small>
+  </div>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+
+/* 환불 사유 데이터 (analysis/refund-reasons.csv) */
+const DATA = [
+  { name: '색상 불만', count: 8, pct: 30.8, amount: 209000, hi: true },
+  { name: '배송 지연', count: 7, pct: 26.9, amount: 212000 },
+  { name: '제품 파손', count: 5, pct: 19.2, amount: 235000 },
+  { name: '단순 변심', count: 3, pct: 11.5, amount: 78000 },
+  { name: '사이즈 불만', count: 3, pct: 11.5, amount: 53000 }
+];
+const MAX = 8;
+const chart = document.getElementById('chart');
+const tip = document.createElement('div');
+tip.className = 'tip';
+chart.appendChild(tip);
+
+DATA.forEach((d, i) => {
+  const row = document.createElement('div');
+  row.className = 'row' + (d.hi ? ' hi' : '');
+  row.setAttribute('role', 'listitem');
+  row.innerHTML =
+    '<span class="name">' + d.name + '</span>' +
+    '<div class="track" tabindex="0" aria-label="' + d.name + ' ' + d.count + '건, ' + d.pct + '%">' +
+      '<div class="bar" data-w="' + (d.count / MAX * 100) + '"></div>' +
+    '</div>' +
+    '<span class="val"><span class="num" data-to="' + d.count + '">' + d.count + '</span>건 · ' + d.pct + '%</span>';
+  const track = row.querySelector('.track');
+  const show = () => {
+    tip.innerHTML = '<b>' + d.name + '</b><br>환불 ' + d.count + '건 · 전체의 ' + d.pct + '%<br>환불 금액 ' + d.amount.toLocaleString('ko-KR') + '원';
+    const c = chart.getBoundingClientRect();
+    const t = track.getBoundingClientRect();
+    const barW = t.width * d.count / MAX;
+    let left = t.left - c.left + Math.min(barW, t.width) - 20;
+    tip.classList.add('on');
+    left = Math.max(0, Math.min(left, c.width - tip.offsetWidth));
+    tip.style.left = left + 'px';
+    tip.style.top = (t.top - c.top - tip.offsetHeight - 10) + 'px';
+  };
+  const hide = () => tip.classList.remove('on');
+  track.addEventListener('mouseenter', show);
+  track.addEventListener('mouseleave', hide);
+  track.addEventListener('focus', show);
+  track.addEventListener('blur', hide);
+  track.addEventListener('click', show);
+  chart.appendChild(row);
+});
+
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* 막대: 0에서 각 건수까지 차오르는 애니메이션 (요청한 움직임이라 모션 줄이기 설정과 상관없이 재생) */
+let playId = 0;
+function playChart() {
+  const id = ++playId;
+  const bars = [...chart.querySelectorAll('.bar')];
+  const nums = [...chart.querySelectorAll('.num')];
+  const big = document.getElementById('bigNum');
+  const DUR = 1600, STAGGER = 180;
+  bars.forEach(b => b.style.width = '0%');
+  nums.forEach(n => n.textContent = '0');
+  big.textContent = '0.0';
+  const start = performance.now();
+  const ease = t => 1 - Math.pow(1 - t, 3);
+  function frame(now) {
+    if (id !== playId) return;
+    let running = false;
+    bars.forEach((b, i) => {
+      const t = Math.min(1, Math.max(0, (now - start - i * STAGGER) / DUR));
+      if (t < 1) running = true;
+      const e = ease(t);
+      b.style.width = (+b.dataset.w * e) + '%';
+      nums[i].textContent = Math.round(+nums[i].dataset.to * e);
+    });
+    const tb = Math.min(1, (now - start) / DUR);
+    big.textContent = (30.8 * ease(tb)).toFixed(1);
+    if (running || tb < 1) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+function fillChart() {
+  chart.querySelectorAll('.bar').forEach(b => b.style.width = b.dataset.w + '%');
+}
+document.getElementById('replay').addEventListener('click', playChart);
+
+/* 스크롤 등장 + 그래프 재생 */
+/* 그래프가 화면에 들어올 때마다 0부터 다시 재생 */
+if ('IntersectionObserver' in window) {
+  let shown = false;
+  new IntersectionObserver(es => {
+    es.forEach(e => {
+      if (e.isIntersecting && !shown) { shown = true; playChart(); }
+      else if (!e.isIntersecting) { shown = false; }
+    });
+  }, { threshold: 0.4 }).observe(chart);
+} else {
+  fillChart();
+}
+
+if ('IntersectionObserver' in window && !reduce) {
+  const items = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(es => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.remove('wait'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  items.forEach(el => {
+    const r = el.getBoundingClientRect();
+    if (r.top > window.innerHeight) { el.classList.add('wait'); io.observe(el); }
+  });
+}
+
+/* 은은한 눈 */
+function snow(canvas, opts) {
+  if (reduce || !canvas.getContext) return;
+  const ctx = canvas.getContext('2d');
+  let w, h, flakes = [];
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  function size() {
+    w = canvas.clientWidth; h = canvas.clientHeight;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const n = Math.round(w * h / opts.density);
+    flakes = Array.from({ length: n }, () => ({
+      x: Math.random() * w, y: Math.random() * h,
+      r: 0.8 + Math.random() * opts.size, s: 0.15 + Math.random() * 0.45,
+      d: Math.random() * Math.PI * 2
+    }));
+  }
+  function tick() {
+    ctx.clearRect(0, 0, w, h);
+    ctx.fillStyle = opts.color;
+    flakes.forEach(f => {
+      f.y += f.s; f.d += 0.01; f.x += Math.sin(f.d) * 0.25;
+      if (f.y > h + 4) { f.y = -4; f.x = Math.random() * w; }
+      ctx.beginPath(); ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2); ctx.fill();
+    });
+    requestAnimationFrame(tick);
+  }
+  size(); tick();
+  window.addEventListener('resize', size);
+}
+snow(document.getElementById('heroSnow'), { density: 14000, size: 1.6, color: 'rgba(255,255,255,0.85)' });
+snow(document.getElementById('formSnow'), { density: 9000, size: 1.8, color: 'rgba(255,255,255,0.55)' });
+
+/* 사전예약 폼 (저장하지 않음) */
+const form = document.getElementById('reserveForm');
+const fields = document.getElementById('formFields');
+const done = document.getElementById('done');
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  let ok = true;
+  document.getElementById('nameErr').textContent = name ? '' : '이름을 입력해 주세요.';
+  if (!name) ok = false;
+  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  document.getElementById('emailErr').textContent = emailOk ? '' : '이메일 주소를 다시 확인해 주세요.';
+  if (!emailOk) ok = false;
+  if (!ok) return;
+  document.getElementById('doneTitle').textContent = name + '님, 사전예약 신청이 완료됐어요';
+  fields.hidden = true;
+  done.hidden = false;
+  form.reset();
+});
+document.getElementById('again').addEventListener('click', () => {
+  done.hidden = true;
+  fields.hidden = false;
+  document.getElementById('name').focus();
+});
+</script>
+</body>
+</html>
